@@ -14,8 +14,6 @@ import kotlin.math.pow
 @UnstableApi
 class ReplayGainAudioProcessor : AudioProcessor {
   @Volatile private var linearGain = 1.0
-  private var channelCount = 0
-  private var encoding = C.ENCODING_INVALID
   private var active = false
   private var outputBuffer: ByteBuffer = EMPTY_BUFFER
   private var inputEnded = false
@@ -31,8 +29,6 @@ class ReplayGainAudioProcessor : AudioProcessor {
     if (inputAudioFormat.encoding != C.ENCODING_PCM_16BIT) {
       throw AudioProcessor.UnhandledAudioFormatException(inputAudioFormat)
     }
-    channelCount = inputAudioFormat.channelCount
-    encoding = inputAudioFormat.encoding
     active = true
     return inputAudioFormat
   }
@@ -80,8 +76,6 @@ class ReplayGainAudioProcessor : AudioProcessor {
 
   override fun reset() {
     flush()
-    channelCount = 0
-    encoding = C.ENCODING_INVALID
     active = false
     linearGain = 1.0
   }
