@@ -140,6 +140,20 @@ fun AboutScreen(
     ) {
       item { AboutAppCard() }
 
+      item {
+        Material3SettingsGroup(
+          title = "Legal",
+          items = listOf(
+            Material3SettingsItem(
+              icon = painterResource(R.drawable.github),
+              title = { Text("Open-source licenses") },
+              description = { Text("NEXUS GPL-3.0 and third-party components") },
+              onClick = { navController.navigate("settings/licenses") },
+            )
+          )
+        )
+      }
+
       if (contributors.isNotEmpty()) {
         item {
           Column(modifier = Modifier.fillMaxWidth()) {
