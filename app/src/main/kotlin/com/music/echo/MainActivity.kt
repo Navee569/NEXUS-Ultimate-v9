@@ -513,7 +513,7 @@ class MainActivity : ComponentActivity() {
     syncUtils: SyncUtils,
   ) {
     val enableDynamicTheme by rememberPreference(DynamicThemeKey, defaultValue = true)
-    val enableHighRefreshRate by rememberPreference(EnableHighRefreshRateKey, defaultValue = true)
+    val enableHighRefreshRate by rememberPreference(EnableHighRefreshRateKey, defaultValue = false)
     val context = LocalContext.current
     var showUpdateDialog by remember { androidx.compose.runtime.mutableStateOf(false) }
     var availableUpdateVersion by remember { androidx.compose.runtime.mutableStateOf("") }
@@ -690,7 +690,7 @@ class MainActivity : ComponentActivity() {
 
     LaunchedEffect(useDarkTheme) { setSystemBarAppearance(useDarkTheme) }
 
-    val pureBlackEnabled by rememberPreference(PureBlackKey, defaultValue = false)
+    val pureBlackEnabled by rememberPreference(PureBlackKey, defaultValue = true)
     val pureBlack = remember(pureBlackEnabled, useDarkTheme) { pureBlackEnabled && useDarkTheme }
 
     val (selectedThemeColorInt) =
