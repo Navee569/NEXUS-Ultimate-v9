@@ -15,6 +15,7 @@ plugins {
   alias(libs.plugins.compose.compiler)
   alias(libs.plugins.kotlin.serialization)
   alias(libs.plugins.protobufPlugin)
+  alias(libs.plugins.androidx.baselineprofile)
 }
 
 android {
@@ -228,6 +229,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 }
 
 dependencies {
+  baselineProfile(project(":baselineprofile"))
   implementation("nl.dionsegijn:konfetti-compose:2.0.4")
 
   implementation(project(":core"))
