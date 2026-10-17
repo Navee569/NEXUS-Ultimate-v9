@@ -45,6 +45,7 @@ import echo.music.iad1tya.ui.screens.recognition.RecognitionScreen
 import echo.music.iad1tya.ui.screens.search.OnlineSearchResult
 import echo.music.iad1tya.ui.screens.search.SearchScreen
 import echo.music.iad1tya.ui.screens.settings.AboutScreen
+import echo.music.iad1tya.ui.screens.settings.OpenSourceLicensesScreen
 import echo.music.iad1tya.ui.screens.settings.AccountSettingsScreen
 import echo.music.iad1tya.ui.screens.settings.AiSettings
 import echo.music.iad1tya.ui.screens.settings.AppIconSettingsScreen
@@ -544,6 +545,8 @@ fun NavGraphBuilder.navigationBuilder(
       highlightKey = backStackEntry.arguments?.getString("highlightKey")
     )
   }
+
+  composable("settings/licenses") { OpenSourceLicensesScreen(navController) }
 
   composable("update") { UpdateScreen(navController) }
 
