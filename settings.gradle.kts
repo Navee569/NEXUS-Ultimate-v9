@@ -20,6 +20,7 @@ rootProject.name = "echomusic"
 include(
     ":app",
     ":baselineprofile",
+    ":benchmark",
     ":innertube",
     ":paxsenixlyrics",
     ":kugou",
