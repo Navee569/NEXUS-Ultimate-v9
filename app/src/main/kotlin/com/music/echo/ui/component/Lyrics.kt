@@ -2179,7 +2179,7 @@ fun Lyrics(
                   Intent().apply {
                     action = Intent.ACTION_SEND
                     type = "text/plain"
-                    val songLink = "https://share.echomusic.fun/watch?v=${mediaMetadata?.id}"
+                    val songLink = "https://music.youtube.com/watch?v=${mediaMetadata?.id}"
                     putExtra(
                       Intent.EXTRA_TEXT,
                       "\"$lyricsText\"\n\n$songTitle - $artists\n$songLink"
