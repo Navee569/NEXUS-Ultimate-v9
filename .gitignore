@@ -34,3 +34,8 @@ lastfm-empty/build/
 
 # Logs
 *.log
+
+# Local security audit reports — keep on this device
+/NEXUS-LOCAL-AUDIT-RESULTS.json
+/NEXUS_SESSION_REPORT.md
+/NEXUS-LOCAL-AUDIT-REPORT.md

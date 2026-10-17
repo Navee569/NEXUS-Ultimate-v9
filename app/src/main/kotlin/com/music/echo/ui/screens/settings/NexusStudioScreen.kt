@@ -63,6 +63,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.navigation.NavController
 import com.music.innertube.YouTube
 import com.music.innertube.models.SongItem
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import echo.music.iad1tya.utils.rememberPreference
 import echo.music.iad1tya.LocalPlayerConnection
@@ -86,7 +87,7 @@ private val NexusMoodCountsKey = stringPreferencesKey("nexus_mood_sessions_v1")
 private val NexusAudioProfileKey = stringPreferencesKey("nexus_audio_profile_v1")
 private val NexusDiscoveryPrefsKey = stringPreferencesKey("nexus_discovery_prefs_v1")
 private val NexusPrivateNotesKey = stringPreferencesKey("nexus_private_notes_v1")
-private val NexusAutoAudioProfileKey = stringPreferencesKey("nexus_auto_audio_profile_v1")
+private val NexusAutoAudioProfileKey = booleanPreferencesKey("nexus_auto_audio_profile_v1")
 private val NexusDeviceProfileMapKey = stringPreferencesKey("nexus_device_profile_map_v1")
 
 private data class SonicMemory(
@@ -722,27 +723,29 @@ fun NexusStudioScreen(navController: NavController) {
                     Text("Privacy Fortress", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                     Text("NEXUS uses a local-first approach for the custom tools on this screen. Online playback and integrations still contact the services they require.", style = MaterialTheme.typography.bodyMedium)
                 }
-                Card {
-                    Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                            Column(Modifier.weight(1f)) {
-                                Text("Private Session", fontWeight = FontWeight.SemiBold)
-                                Text("Pause new listening and search history writes together.", style = MaterialTheme.typography.bodySmall)
-                            }
-                            Switch(
-                                checked = pauseListenHistory && pauseSearchHistory,
-                                onCheckedChange = { enabled ->
-                                    setPauseListenHistory(enabled)
-                                    setPauseSearchHistory(enabled)
+                item {
+                    Card {
+                        Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                                Column(Modifier.weight(1f)) {
+                                    Text("Private Session", fontWeight = FontWeight.SemiBold)
+                                    Text("Pause new listening and search history writes together.", style = MaterialTheme.typography.bodySmall)
                                 }
-                            )
-                        }
-                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                            Column(Modifier.weight(1f)) {
-                                Text("Screenshot protection", fontWeight = FontWeight.SemiBold)
-                                Text("Use the app's screenshot-blocking preference where supported.", style = MaterialTheme.typography.bodySmall)
+                                Switch(
+                                    checked = pauseListenHistory && pauseSearchHistory,
+                                    onCheckedChange = { enabled ->
+                                        setPauseListenHistory(enabled)
+                                        setPauseSearchHistory(enabled)
+                                    }
+                                )
                             }
-                            Switch(checked = disableScreenshots, onCheckedChange = setDisableScreenshots)
+                            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                                Column(Modifier.weight(1f)) {
+                                    Text("Screenshot protection", fontWeight = FontWeight.SemiBold)
+                                    Text("Use the app's screenshot-blocking preference where supported.", style = MaterialTheme.typography.bodySmall)
+                                }
+                                Switch(checked = disableScreenshots, onCheckedChange = setDisableScreenshots)
+                            }
                         }
                     }
                 }
