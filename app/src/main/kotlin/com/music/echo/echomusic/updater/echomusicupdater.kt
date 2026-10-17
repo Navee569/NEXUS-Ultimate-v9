@@ -340,8 +340,16 @@ fun UpdateScreen(navController: NavHostController) {
                       }
                     } else {
                       val urlToDownload =
-                        currentStatus.apkUrl
-                          ?: "https://github.com/EchoMusicApp/Echo-Music/releases/download/${currentStatus.version}/echomusic.apk"
+                        currentStatus.apkUrl ?: run {
+                        // Never guess a release asset name or download an unrelated upstream APK.
+                        val releasesIntent =
+                          Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://github.com/Navee569/NEXUS-Ultimate-v9/releases/latest")
+                          ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        ContextCompat.startActivity(context, releasesIntent, null)
+                        return@AnimatedActionButton
+                      }
 
                       val constraints =
                         Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
@@ -674,7 +682,7 @@ suspend fun checkForUpdate(
 ) {
   withContext(Dispatchers.IO) {
     try {
-      val url = URL("https://api.github.com/repos/EchoMusicApp/Echo-Music/releases/latest")
+      val url = URL("https://api.github.com/repos/Navee569/NEXUS-Ultimate-v9/releases/latest")
       val json = url.openStream().bufferedReader().use { it.readText() }
       val targetRelease = JSONObject(json)
 
@@ -694,7 +702,7 @@ suspend fun checkForUpdate(
         try {
           val changelogUrl =
             URL(
-              "https://github.com/EchoMusicApp/Echo-Music/releases/download/$tagWithPrefix/changelog.json"
+              "https://github.com/Navee569/NEXUS-Ultimate-v9/releases/download/$tagWithPrefix/changelog.json"
             )
           val changelogJson = changelogUrl.openStream().bufferedReader().use { it.readText() }
           val changelogData = JSONObject(changelogJson)
@@ -814,7 +822,7 @@ suspend fun fetchChangelogForVersion(currentVersion: String): WhatsNewInfo? =
     try {
       val cleanCurrent = currentVersion.removePrefix("b").removePrefix("v").trim()
       val releasesJson =
-        openTimedStream("https://api.github.com/repos/EchoMusicApp/Echo-Music/releases")
+        openTimedStream("https://api.github.com/repos/Navee569/NEXUS-Ultimate-v9/releases")
           .bufferedReader()
           .use { it.readText() }
       val releases = JSONArray(releasesJson)
@@ -836,7 +844,7 @@ suspend fun fetchChangelogForVersion(currentVersion: String): WhatsNewInfo? =
       try {
         val changelogJson =
           openTimedStream(
-              "https://github.com/EchoMusicApp/Echo-Music/releases/download/$tag/changelog.json"
+              "https://github.com/Navee569/NEXUS-Ultimate-v9/releases/download/$tag/changelog.json"
             )
             .bufferedReader()
             .use { it.readText() }
