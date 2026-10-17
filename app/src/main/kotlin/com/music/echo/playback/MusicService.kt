@@ -1300,13 +1300,6 @@ class MusicService : MediaLibraryService(), Player.Listener, PlaybackStatsListen
 
     val stereoWidener = StereoWidenerAudioProcessor()
 
-    runBlocking {
-      val skipSilence = dataStore.get(SkipSilenceKey, false)
-      val instantSkip = dataStore.get(SkipSilenceInstantKey, false)
-      silenceProcessor.instantModeEnabled = skipSilence && instantSkip
-      stereoWidener.width = if (dataStore.get(SpatialAudioKey, false)) SPATIAL_AUDIO_WIDTH else 1f
-    }
-
     val player =
       ExoPlayer.Builder(this)
         .setMediaSourceFactory(createMediaSourceFactory())
@@ -1344,14 +1337,23 @@ class MusicService : MediaLibraryService(), Player.Listener, PlaybackStatsListen
     playerEqProcessors[player] = eqProcessor
     playerReplayGainProcessors[player] = replayGainProcessor
 
-    player.apply {
-      runBlocking {
-        val offload = dataStore.get(AudioOffload, false)
-        val crossfade = dataStore.get(CrossfadeEnabledKey, false)
-        setOffloadEnabled(if (crossfade) false else offload)
-        skipSilenceEnabled = dataStore.get(SkipSilenceKey, false)
+    player.addAnalyticsListener(PlaybackStatsListener(false, this@MusicService))
+
+    // Preference reads are asynchronous so player creation never blocks the service's caller.
+    scope.launch(Dispatchers.IO) {
+      val skipSilence = dataStore.get(SkipSilenceKey, false)
+      val instantSkip = dataStore.get(SkipSilenceInstantKey, false)
+      val spatialAudio = dataStore.get(SpatialAudioKey, false)
+      val offload = dataStore.get(AudioOffload, false)
+      val crossfade = dataStore.get(CrossfadeEnabledKey, false)
+      withContext(Dispatchers.Main.immediate) {
+        runCatching {
+          silenceProcessor.instantModeEnabled = skipSilence && instantSkip
+          stereoWidener.width = if (spatialAudio) SPATIAL_AUDIO_WIDTH else 1f
+          player.setOffloadEnabled(if (crossfade) false else offload)
+          player.skipSilenceEnabled = skipSilence
+        }.onFailure { Timber.tag(TAG).w(it, "Failed to apply initial playback preferences") }
       }
-      addAnalyticsListener(PlaybackStatsListener(false, this@MusicService))
     }
     return player
   }
