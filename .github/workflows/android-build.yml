@@ -54,11 +54,17 @@ jobs:
           chmod +x gradlew
           ./gradlew --no-daemon --stacktrace :app:assembleUniversalFossDebug
 
+      - name: Generate SHA-256 checksum
+        run: |
+          find app/build/outputs/apk -type f -name '*.apk' -print0 | xargs -0 sha256sum | tee app/build/outputs/apk/SHA256SUMS.txt
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: NEXUS-Universal-FOSS-Debug-APK
-          path: app/build/outputs/apk/**/*.apk
+          path: |
+            app/build/outputs/apk/**/*.apk
+            app/build/outputs/apk/SHA256SUMS.txt
           if-no-files-found: error
           retention-days: 7
 
