@@ -27,7 +27,7 @@ import echo.music.iad1tya.constants.AppFont
 import echo.music.iad1tya.constants.SelectedFontKey
 import echo.music.iad1tya.utils.rememberPreference
 
-val DefaultThemeColor = Color(0xFFED5564)
+val DefaultThemeColor = Color(0xFF62D9FF)
 
 @Composable
 fun echomusicTheme(
@@ -126,7 +126,22 @@ fun Bitmap.extractGradientColors(): List<Color> {
 }
 
 fun ColorScheme.pureBlack(apply: Boolean) =
-  if (apply) copy(surface = Color.Black, background = Color.Black) else this
+  if (apply) {
+    copy(
+      surface = Color.Black,
+      background = Color.Black,
+      surfaceDim = Color.Black,
+      surfaceBright = Color(0xFF171A22),
+      surfaceContainerLowest = Color.Black,
+      surfaceContainerLow = Color(0xFF05060A),
+      surfaceContainer = Color(0xFF080A10),
+      surfaceContainerHigh = Color(0xFF0C0F16),
+      surfaceContainerHighest = Color(0xFF11151D),
+      surfaceVariant = Color(0xFF090C12)
+    )
+  } else {
+    this
+  }
 
 val ColorSaver =
   object : Saver<Color, Int> {

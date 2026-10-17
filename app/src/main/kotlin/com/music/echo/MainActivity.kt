@@ -690,7 +690,7 @@ class MainActivity : ComponentActivity() {
 
     LaunchedEffect(useDarkTheme) { setSystemBarAppearance(useDarkTheme) }
 
-    val pureBlackEnabled by rememberPreference(PureBlackKey, defaultValue = false)
+    val pureBlackEnabled by rememberPreference(PureBlackKey, defaultValue = true)
     val pureBlack = remember(pureBlackEnabled, useDarkTheme) { pureBlackEnabled && useDarkTheme }
 
     val (selectedThemeColorInt) =
@@ -1142,7 +1142,7 @@ class MainActivity : ComponentActivity() {
 
         val currentTitle =
           when (navBackStackEntry?.destination?.route) {
-            Screens.Home.route -> "Echo Music"
+            Screens.Home.route -> "NEXUS"
             Screens.Search.route -> stringResource(R.string.search)
             Screens.Library.route -> stringResource(R.string.filter_library)
             Screens.ListenTogether.route -> stringResource(R.string.together)

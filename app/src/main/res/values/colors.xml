@@ -2,7 +2,8 @@
 <resources>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="ic_launcher_static_background">#e63c28</color>
+    <color name="ic_launcher_static_background">#10131F</color>
+    <color name="nexus_launcher_background">#10131F</color>
     <color name="legacy_icon_background">#000000</color>
     
     <!-- Widget colors for light mode -->

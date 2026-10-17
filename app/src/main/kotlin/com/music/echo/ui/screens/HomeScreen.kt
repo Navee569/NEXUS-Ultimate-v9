@@ -921,6 +921,75 @@ fun HomeScreen(
         modifier = Modifier.hapticScrollEdge(lazylistState),
         contentPadding = LocalPlayerAwareWindowInsets.current.asPaddingValues()
       ) {
+        item(key = "nexus_home_header") {
+          Box(
+            modifier = Modifier.fillMaxWidth()
+              .padding(horizontal = 16.dp, vertical = 12.dp)
+              .clip(RoundedCornerShape(28.dp))
+              .background(
+                Brush.linearGradient(
+                  colors = listOf(Color(0xFF0C202C), Color(0xFF111522), Color(0xFF171127))
+                )
+              )
+              .padding(horizontal = 20.dp, vertical = 22.dp)
+          ) {
+            Row(
+              modifier = Modifier.fillMaxWidth(),
+              verticalAlignment = Alignment.CenterVertically,
+              horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+              Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(7.dp)
+              ) {
+                Row(
+                  verticalAlignment = Alignment.CenterVertically,
+                  horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                  Box(
+                    modifier = Modifier.size(7.dp).clip(CircleShape).background(Color(0xFF62D9FF))
+                  )
+                  Text(
+                    text = "N / X  •  YOUR SOUND UNIVERSE",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = Color(0xFF8BE5FF),
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1
+                  )
+                }
+                Text(
+                  text = "Find your frequency.",
+                  style = MaterialTheme.typography.headlineSmall,
+                  color = Color.White,
+                  fontWeight = FontWeight.ExtraBold,
+                  maxLines = 2,
+                  overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                  text = "A space for the music you love.",
+                  style = MaterialTheme.typography.bodyMedium,
+                  color = Color.White.copy(alpha = 0.68f),
+                  maxLines = 2,
+                  overflow = TextOverflow.Ellipsis
+                )
+              }
+              Box(
+                modifier = Modifier.size(58.dp)
+                  .clip(RoundedCornerShape(20.dp))
+                  .background(Color(0xFF62D9FF).copy(alpha = 0.12f)),
+                contentAlignment = Alignment.Center
+              ) {
+                Text(
+                  text = "N/X",
+                  style = MaterialTheme.typography.titleLarge,
+                  color = Color(0xFF8BE5FF),
+                  fontWeight = FontWeight.Black
+                )
+              }
+            }
+          }
+        }
+
         item {
           ChipsRow(
             chips =

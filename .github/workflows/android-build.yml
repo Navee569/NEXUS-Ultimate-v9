@@ -2,7 +2,7 @@ name: NEXUS Android Debug Build
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "nexus-branding-cleanup", "nexus-premium-amoled-efficiency"]
   workflow_dispatch:
 
 permissions:
@@ -61,3 +61,13 @@ jobs:
           path: app/build/outputs/apk/**/*.apk
           if-no-files-found: error
           retention-days: 7
+
+      - name: Run Android lint
+        timeout-minutes: 15
+        run: |
+          ./gradlew --no-daemon --stacktrace :app:lintUniversalFossDebug
+
+      - name: Run unit tests
+        timeout-minutes: 15
+        run: |
+          ./gradlew --no-daemon --stacktrace test
