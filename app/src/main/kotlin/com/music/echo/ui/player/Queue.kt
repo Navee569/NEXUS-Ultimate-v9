@@ -1114,6 +1114,7 @@ fun Queue(
           itemsIndexed(
             items = mutableQueueWindows,
             key = { _, item -> item.uid.toString() },
+            contentType = { _, _ -> "queue_track" },
           ) { index, window ->
             ReorderableItem(
               state = reorderableState,
@@ -1297,6 +1298,7 @@ fun Queue(
             itemsIndexed(
               items = automix,
               key = { _, it -> it.mediaId },
+              contentType = { _, _ -> "automix_track" },
             ) { index, item ->
               Row(
                 horizontalArrangement = Arrangement.Center,
