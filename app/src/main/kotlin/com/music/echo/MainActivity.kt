@@ -513,7 +513,7 @@ class MainActivity : ComponentActivity() {
     syncUtils: SyncUtils,
   ) {
     val enableDynamicTheme by rememberPreference(DynamicThemeKey, defaultValue = true)
-    val enableHighRefreshRate by rememberPreference(EnableHighRefreshRateKey, defaultValue = false)
+    val enableHighRefreshRate by rememberPreference(EnableHighRefreshRateKey, defaultValue = true)
     val context = LocalContext.current
     var showUpdateDialog by remember { androidx.compose.runtime.mutableStateOf(false) }
     var availableUpdateVersion by remember { androidx.compose.runtime.mutableStateOf("") }
