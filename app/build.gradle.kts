@@ -229,6 +229,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 }
 
 dependencies {
+  implementation(project(":design-system"))
   baselineProfile(project(":baselineprofile"))
   implementation("nl.dionsegijn:konfetti-compose:2.0.4")
 
