@@ -133,6 +133,7 @@ import echo.music.iad1tya.di.PlayerCache
 import echo.music.iad1tya.echomusic.updater.downloadmanager.EchoNotificationProvider
 import echo.music.dsp.audio.AutomixDuckAudioProcessor
 import echo.music.dsp.audio.CustomEqualizerAudioProcessor
+import echo.music.dsp.audio.ReplayGainAudioProcessor
 import echo.music.dsp.audio.StereoWidenerAudioProcessor
 import echo.music.dsp.controller.DspController
 import echo.music.dsp.data.EQProfileRepository
@@ -478,6 +479,7 @@ class MusicService : MediaLibraryService(), Player.Listener, PlaybackStatsListen
   private val playerDuckProcessors = HashMap<Player, AutomixDuckAudioProcessor>()
   private val playerStereoWideners = HashMap<Player, StereoWidenerAudioProcessor>()
   private val playerEqProcessors = HashMap<Player, CustomEqualizerAudioProcessor>()
+  private val playerReplayGainProcessors = HashMap<Player, ReplayGainAudioProcessor>()
   private val cutoffGuard = PlaybackCutoffGuard()
 
   private val instantSilenceSkipEnabled = MutableStateFlow(false)
@@ -1289,6 +1291,7 @@ class MusicService : MediaLibraryService(), Player.Listener, PlaybackStatsListen
 
   private fun createExoPlayer(): ExoPlayer {
     val eqProcessor = CustomEqualizerAudioProcessor()
+    val replayGainProcessor = ReplayGainAudioProcessor()
     dspController.addAudioProcessor(eqProcessor)
 
     val duckProcessor = AutomixDuckAudioProcessor()
@@ -1308,7 +1311,7 @@ class MusicService : MediaLibraryService(), Player.Listener, PlaybackStatsListen
       ExoPlayer.Builder(this)
         .setMediaSourceFactory(createMediaSourceFactory())
         .setRenderersFactory(
-          createRenderersFactory(eqProcessor, silenceProcessor, duckProcessor, stereoWidener)
+          createRenderersFactory(eqProcessor, replayGainProcessor, silenceProcessor, duckProcessor, stereoWidener)
         )
         .setLoadControl(
           DefaultLoadControl.Builder()
@@ -1339,6 +1342,7 @@ class MusicService : MediaLibraryService(), Player.Listener, PlaybackStatsListen
     playerDuckProcessors[player] = duckProcessor
     playerStereoWideners[player] = stereoWidener
     playerEqProcessors[player] = eqProcessor
+    playerReplayGainProcessors[player] = replayGainProcessor
 
     player.apply {
       runBlocking {
@@ -2522,6 +2526,16 @@ class MusicService : MediaLibraryService(), Player.Listener, PlaybackStatsListen
     }
 
     trackedMediaItem = mediaItem
+    val replayGainExtras = mediaItem?.mediaMetadata?.extras
+    val replayGainDb =
+      ReplayGainAudioProcessor.parseGainDb(
+        replayGainExtras?.get("replaygain_track_gain")
+          ?: replayGainExtras?.get("REPLAYGAIN_TRACK_GAIN")
+      ) ?: ReplayGainAudioProcessor.parseGainDb(
+        replayGainExtras?.get("replaygain_album_gain")
+          ?: replayGainExtras?.get("REPLAYGAIN_ALBUM_GAIN")
+      )
+    playerReplayGainProcessors[player]?.setGainDb(replayGainDb)
     trackedDurationMs = player.duration.takeIf { it > 0 && it != C.TIME_UNSET }
       ?: (mediaItem?.metadata?.duration?.takeIf { it > 0 }?.times(1000L) ?: 0L)
     trackedAccumulatedPlayMs = 0L
@@ -3735,6 +3749,7 @@ class MusicService : MediaLibraryService(), Player.Listener, PlaybackStatsListen
 
   private fun createRenderersFactory(
     eqProcessor: CustomEqualizerAudioProcessor,
+    replayGainProcessor: ReplayGainAudioProcessor,
     silenceProcessor: SilenceDetectorAudioProcessor,
     duckProcessor: AutomixDuckAudioProcessor,
     stereoWidener: StereoWidenerAudioProcessor,
@@ -3752,6 +3767,7 @@ class MusicService : MediaLibraryService(), Player.Listener, PlaybackStatsListen
             DefaultAudioSink.DefaultAudioProcessorChain(
               arrayOf(
                 eqProcessor,
+                replayGainProcessor,
                 duckProcessor,
                 silenceProcessor,
                 stereoWidener,
