@@ -159,7 +159,7 @@ fun AppearanceSettings(
 
   var showAppIconDialog by rememberSaveable { mutableStateOf(false) }
   val (enableHighRefreshRate, onEnableHighRefreshRateChange) =
-    rememberPreference(echo.music.iad1tya.constants.EnableHighRefreshRateKey, defaultValue = false)
+    rememberPreference(echo.music.iad1tya.constants.EnableHighRefreshRateKey, defaultValue = true)
   val (liveBlurDensity, onLiveBlurDensityChange) =
     rememberPreference(echo.music.iad1tya.constants.LiveBlurDensityKey, defaultValue = 50f)
   val (selectedThemeColorInt) =
