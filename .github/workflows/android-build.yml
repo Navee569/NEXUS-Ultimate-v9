@@ -2,7 +2,7 @@ name: NEXUS Android Debug Build
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "nexus-branding-cleanup"]
   workflow_dispatch:
 
 permissions:
