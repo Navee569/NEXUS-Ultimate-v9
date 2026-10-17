@@ -27,7 +27,7 @@ import echo.music.iad1tya.constants.AppFont
 import echo.music.iad1tya.constants.SelectedFontKey
 import echo.music.iad1tya.utils.rememberPreference
 
-val DefaultThemeColor = Color(0xFFED5564)
+val DefaultThemeColor = Color(0xFF62D9FF)
 
 @Composable
 fun echomusicTheme(
