@@ -20,7 +20,6 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -76,10 +75,11 @@ fun AboutScreen(
         ) {
             item {
                 Spacer(Modifier.height(16.dp))
-                androidx.compose.foundation.Image(
-                    painter = painterResource(R.mipmap.ic_launcher),
-                    contentDescription = "NEXUS app icon",
-                    modifier = Modifier.size(104.dp)
+                Text(
+                    text = "N/X",
+                    style = MaterialTheme.typography.displayMedium,
+                    fontWeight = FontWeight.Black,
+                    color = MaterialTheme.colorScheme.primary
                 )
                 Spacer(Modifier.height(12.dp))
                 Text(
