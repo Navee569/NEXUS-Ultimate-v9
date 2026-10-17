@@ -1,17 +1,17 @@
 <div align="center">
-  <img src="assets/banner.png" alt="Echo Music Logo"/>
+  <img src="assets/banner.png" alt="NEXUS Music Logo"/>
 
-  <p><b>A modern Android music app with ad-free streaming, synced lyrics, offline playback, and an intuitive user experience.</b></p>
+  <p><b>A privacy-first Android music player fork with AMOLED theming, local playback, synchronized lyrics, and configurable audio processing.</b></p>
 </div>
 
 ---
 
 ## Overview
 
-Echo Music delivers a seamless, premium listening experience by leveraging YouTube Music's vast library — without the ads. It adds powerful extras including offline downloads, real-time synchronized lyrics, and environment-aware music recognition.
+NEXUS is a GPL-3.0 fork of Echo Music. It retains upstream license notices while developing an independent NEXUS identity, privacy controls, and performance-focused interface.
 
 > [!IMPORTANT]
-> **In-app OTA updates have been permanently removed.** Please update manually via the website. Echo Music is completely free and ad-free; the few ads shown during a manual download help support the ongoing development of this project. Please do not open issues requesting to bring this back. Thank you for your support!
+> **NEXUS updates are published through the NEXUS repository releases.** The updater must not redirect to the upstream Echo Music website or releases. If no NEXUS release is available, no update can be installed.
 
 ---
 
@@ -156,7 +156,7 @@ Echo Music delivers a seamless, premium listening experience by leveraging YouTu
 
 ### Android Installation
 
-Download the latest pre-compiled APK from the [Releases Page](https://github.com/EchoMusicApp/Echo-Music/releases/latest).
+Download the latest pre-compiled APK from the [Releases Page](https://github.com/Navee569/NEXUS-Ultimate-v9/releases/latest).
 
 <details>
 <summary><b>Building from Source</b></summary>
