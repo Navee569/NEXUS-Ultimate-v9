@@ -49,13 +49,9 @@ jobs:
             "build-tools;37.0.0" \
             "ndk;28.2.13676358"
 
-      - name: Run Android lint
-        run: |
-          chmod +x gradlew
-          ./gradlew --no-daemon --stacktrace :app:lintUniversalFossDebug
-
       - name: Build APK
         run: |
+          chmod +x gradlew
           ./gradlew --no-daemon --stacktrace :app:assembleUniversalFossDebug
 
       - name: Upload APK
@@ -65,6 +61,11 @@ jobs:
           path: app/build/outputs/apk/**/*.apk
           if-no-files-found: error
           retention-days: 7
+
+      - name: Run Android lint
+        timeout-minutes: 15
+        run: |
+          ./gradlew --no-daemon --stacktrace :app:lintUniversalFossDebug
 
       - name: Run unit tests
         timeout-minutes: 15
