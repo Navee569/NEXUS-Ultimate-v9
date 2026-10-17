@@ -1,0 +1,5 @@
+# NEXUS startup profile candidates. Validate/refresh with Macrobenchmark before release.
+Lecho/music/iad1tya/App;
+Lecho/music/iad1tya/MainActivity;
+Lecho/music/iad1tya/ui/screens/NavigationBuilderKt;
+Lecho/music/iad1tya/ui/screens/HomeScreenKt;
