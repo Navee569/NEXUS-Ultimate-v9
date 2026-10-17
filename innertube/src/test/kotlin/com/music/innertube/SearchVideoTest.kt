@@ -2,9 +2,11 @@ package com.music.innertube
 
 import com.music.innertube.YouTube.SearchFilter
 import kotlinx.coroutines.runBlocking
+import org.junit.Ignore
 import org.junit.Test
 
 class SearchVideoTest {
+  @Ignore("Live YouTube integration check; requires external network access and is not a deterministic unit test.")
   @Test
   fun testVideoSearch() {
     runBlocking {
