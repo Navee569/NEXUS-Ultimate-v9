@@ -326,7 +326,7 @@ fun BottomSheetPlayer(
 
   val dataSaverEnabled by
     rememberPreference(key = echo.music.iad1tya.constants.DataSaverEnabledKey, defaultValue = false)
-  val enableCanvasPref by rememberPreference(CanvasThumbnailAnimationKey, true)
+  val enableCanvasPref by rememberPreference(CanvasThumbnailAnimationKey, false)
   val enableCanvas = if (dataSaverEnabled) false else enableCanvasPref
 
   val shouldUseDarkButtonColors =
