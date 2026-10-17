@@ -197,7 +197,7 @@ fun UpdateAvailableDialog(
             onClick = {
               onDismiss()
               val intent =
-                Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://echomusic.fun"))
+                Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://github.com/Navee569/NEXUS-Ultimate-v9/releases/latest"))
               context.startActivity(intent)
             },
             shape = actionShape,
