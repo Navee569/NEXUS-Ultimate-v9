@@ -5,8 +5,8 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Ignore
 import org.junit.Test
 
+@Ignore("Live YouTube integration check; requires external network access and is not a deterministic unit test.")
 class SearchVideoTest {
-  @Ignore("Live YouTube integration check; requires external network access and is not a deterministic unit test.")
   @Test
   fun testVideoSearch() {
     runBlocking {
