@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.StrictMode
 import android.widget.Toast
 import androidx.datastore.preferences.core.edit
 import coil3.ImageLoader
@@ -88,6 +89,17 @@ class App : Application(), SingletonImageLoader.Factory {
     if (isCrashProcess()) {
       CrashHandler.install(this)
       return
+    }
+
+    if (BuildConfig.DEBUG) {
+      StrictMode.setThreadPolicy(
+        StrictMode.ThreadPolicy.Builder()
+          .detectDiskReads()
+          .detectDiskWrites()
+          .detectNetwork()
+          .penaltyLog()
+          .build()
+      )
     }
 
     // Removed destructive database deletion to preserve user data
