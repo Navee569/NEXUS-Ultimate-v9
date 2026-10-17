@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import com.nexus.designsystem.NexusInfoCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -82,12 +83,9 @@ fun OpenSourceLicensesScreen(navController: NavController) {
       verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
       item {
-        Text(
-          "NEXUS is a GPL-3.0 fork. Upstream copyright notices and the repository LICENSE are retained. " +
-            "This list covers principal declared dependencies; transitive dependency notices must be generated from the resolved build graph before release.",
-          style = MaterialTheme.typography.bodyMedium,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-          modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+        NexusInfoCard(
+          title = "NEXUS · Open-source licenses",
+          body = "NEXUS is a GPL-3.0 fork. Echo Music is credited as upstream. Existing upstream copyright notices and the repository LICENSE are retained. This first screen lists principal declared dependencies; complete transitive notices still require a resolved dependency-license report.",
         )
       }
       items(licenseEntries, key = { it.name }) { entry ->
