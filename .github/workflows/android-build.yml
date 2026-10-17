@@ -2,7 +2,7 @@ name: NEXUS Android Debug Build
 
 on:
   push:
-    branches: ["main", "nexus-branding-cleanup"]
+    branches: ["main", "nexus-branding-cleanup", "nexus-premium-amoled-efficiency"]
   workflow_dispatch:
 
 permissions:
