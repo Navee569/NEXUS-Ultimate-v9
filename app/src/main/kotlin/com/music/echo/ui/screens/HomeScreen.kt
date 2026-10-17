@@ -921,6 +921,44 @@ fun HomeScreen(
         modifier = Modifier.hapticScrollEdge(lazylistState),
         contentPadding = LocalPlayerAwareWindowInsets.current.asPaddingValues()
       ) {
+        item(key = "nexus_home_header") {
+          Column(
+            modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp, top = 18.dp, bottom = 14.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp)
+          ) {
+            Row(
+              verticalAlignment = Alignment.CenterVertically,
+              horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+              Box(
+                modifier = Modifier.size(8.dp).clip(CircleShape).background(Color(0xFF62D9FF))
+              )
+              Text(
+                text = "N / X  •  YOUR SOUND UNIVERSE",
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.primary,
+                fontWeight = FontWeight.Bold,
+                maxLines = 1
+              )
+            }
+            Text(
+              text = "Find your frequency.",
+              style = MaterialTheme.typography.headlineMedium,
+              color = MaterialTheme.colorScheme.onSurface,
+              fontWeight = FontWeight.ExtraBold,
+              maxLines = 1,
+              overflow = TextOverflow.Ellipsis
+            )
+            Text(
+              text = "A space for the music you love.",
+              style = MaterialTheme.typography.bodyMedium,
+              color = MaterialTheme.colorScheme.onSurfaceVariant,
+              maxLines = 1,
+              overflow = TextOverflow.Ellipsis
+            )
+          }
+        }
+
         item {
           ChipsRow(
             chips =
