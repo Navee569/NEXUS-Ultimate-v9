@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import echo.music.iad1tya.LocalPlayerAwareWindowInsets
 import echo.music.iad1tya.ui.component.IconButton
 import echo.music.iad1tya.ui.component.Material3SettingsGroup
 import echo.music.iad1tya.ui.component.Material3SettingsItem
@@ -96,6 +95,7 @@ fun OpenSourceLicensesScreen(navController: NavController) {
           title = entry.name,
           items = listOf(
             Material3SettingsItem(
+              icon = painterResource(R.drawable.github),
               title = { Text(entry.license) },
               description = { Text(entry.url) },
               onClick = { uriHandler.openUri(entry.url) },
