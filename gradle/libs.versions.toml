@@ -2,6 +2,7 @@
 retrofit = "3.0.0"
 haze = "1.0.2"
 androidGradlePlugin = "9.1.1"
+baselineProfile = "1.4.1"
 json = "20251224"
 kotlin = "2.3.10"
 compose = "1.10.2"
@@ -152,6 +153,7 @@ youtubedl-android-aria2c = { group = "io.github.junkfood02.youtubedl-android", n
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 
 [plugins]
+androidx-baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineProfile" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
