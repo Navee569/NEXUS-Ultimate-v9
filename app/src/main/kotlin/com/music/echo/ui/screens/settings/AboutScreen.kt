@@ -1,11 +1,13 @@
 package echo.music.iad1tya.ui.screens.settings
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -73,7 +75,13 @@ fun AboutScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             item {
-                Spacer(Modifier.height(24.dp))
+                Spacer(Modifier.height(16.dp))
+                androidx.compose.foundation.Image(
+                    painter = painterResource(R.mipmap.ic_launcher),
+                    contentDescription = "NEXUS app icon",
+                    modifier = Modifier.size(104.dp)
+                )
+                Spacer(Modifier.height(12.dp))
                 Text(
                     text = "NEXUS",
                     style = MaterialTheme.typography.headlineLarge,
@@ -92,8 +100,8 @@ fun AboutScreen(
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = if (BuildConfig.DEBUG) "Debug build"
-                           else "${BuildConfig.ARCHITECTURE.uppercase()} build",
+                    text = if (BuildConfig.DEBUG) "NEXUS debug build"
+                           else "NEXUS ${BuildConfig.ARCHITECTURE.uppercase()} build",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
