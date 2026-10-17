@@ -1,0 +1,27 @@
+{
+  "project": "NEXUS Ultimate",
+  "version": "v7 candidate \u2014 Keystore credential storage",
+  "source_only": true,
+  "checks": {
+    "xml_files_parsed": 582,
+    "xml_parse_errors": 0,
+    "plaintext_token_key_references": [
+      "app/src/main/kotlin/com/music/echo/discord/DiscordCredentialStore.kt"
+    ],
+    "direct_plaintext_token_reads_outside_credential_store": true,
+    "discord_webview_localstorage_token_scrape_found": false,
+    "android_keystore_aes_gcm_store_added": true,
+    "discord_gateway_presence_disabled_in_music_service": true
+  },
+  "not_run": [
+    "Gradle compilation",
+    "unit tests",
+    "Android lint",
+    "dependency resolution",
+    "SBOM/CVE scan",
+    "APK build/analysis",
+    "emulator/device tests",
+    "runtime network capture"
+  ],
+  "xml_errors": []
+}

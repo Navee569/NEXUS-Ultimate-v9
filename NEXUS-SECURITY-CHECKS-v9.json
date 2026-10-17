@@ -1,0 +1,26 @@
+{
+  "project": "NEXUS Ultimate",
+  "version": "v9-account-encryption",
+  "scope": "Source-level hardening only",
+  "changes": [
+    "Android Keystore AES-256-GCM encryption for YouTube cookies and saved account JSON",
+    "Authenticated additional data binds ciphertext to each preference name",
+    "One-time plaintext migration and cleanup",
+    "Fail-closed behavior on ciphertext authentication/decryption failure",
+    "Protected account fields read/written through SecureAccountStore",
+    "Logout clears active encrypted account data while preserving saved accounts"
+  ],
+  "checks": {
+    "xml_parse": "passed",
+    "zip_integrity": "passed",
+    "plaintext_access_scan": "passed",
+    "gradle_compile": "not_run_environment_dns_failure",
+    "unit_tests": "not_run",
+    "lint": "not_run",
+    "apk_build": "not_run",
+    "device_test": "not_run",
+    "dependency_cve_scan": "not_run",
+    "secure_store_static_checks": "passed"
+  },
+  "release_status": "NOT_VERIFIED"
+}

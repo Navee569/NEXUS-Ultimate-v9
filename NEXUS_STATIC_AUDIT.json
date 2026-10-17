@@ -1,0 +1,490 @@
+{
+  "title": "NEXUS source-level static audit",
+  "scope": "Repository source/configuration only; not APK, runtime traffic, or resolved dependency graph.",
+  "dependency_alias_count": 75,
+  "permissions": [
+    "android.permission.ACCESS_COARSE_LOCATION",
+    "android.permission.ACCESS_FINE_LOCATION",
+    "android.permission.ACCESS_NETWORK_STATE",
+    "android.permission.BLUETOOTH",
+    "android.permission.BLUETOOTH_ADMIN",
+    "android.permission.BLUETOOTH_CONNECT",
+    "android.permission.FOREGROUND_SERVICE",
+    "android.permission.FOREGROUND_SERVICE_DATA_SYNC",
+    "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
+    "android.permission.FOREGROUND_SERVICE_MICROPHONE",
+    "android.permission.INTERNET",
+    "android.permission.POST_NOTIFICATIONS",
+    "android.permission.READ_EXTERNAL_STORAGE",
+    "android.permission.READ_MEDIA_AUDIO",
+    "android.permission.RECEIVE_BOOT_COMPLETED",
+    "android.permission.RECORD_AUDIO",
+    "android.permission.WAKE_LOCK",
+    "android.permission.WRITE_SETTINGS"
+  ],
+  "declared_dependencies": [
+    {
+      "alias": "retrofit",
+      "module": "com.squareup.retrofit2:retrofit",
+      "version": "3.0.0"
+    },
+    {
+      "alias": "retrofit-gson",
+      "module": "com.squareup.retrofit2:converter-gson",
+      "version": "3.0.0"
+    },
+    {
+      "alias": "haze",
+      "module": "dev.chrisbanes.haze:haze",
+      "version": "1.0.2"
+    },
+    {
+      "alias": "guava",
+      "module": "com.google.guava:guava",
+      "version": "33.5.0-jre"
+    },
+    {
+      "alias": "coroutines-guava",
+      "module": "org.jetbrains.kotlinx:kotlinx-coroutines-guava",
+      "version": "1.10.2"
+    },
+    {
+      "alias": "concurrent-futures",
+      "module": "androidx.concurrent:concurrent-futures-ktx",
+      "version": "1.3.0"
+    },
+    {
+      "alias": "gradle",
+      "module": "com.android.tools.build:gradle",
+      "version": "9.0.0"
+    },
+    {
+      "alias": "activity",
+      "module": "androidx.activity:activity-compose",
+      "version": "1.12.3"
+    },
+    {
+      "alias": "hilt-navigation",
+      "module": "androidx.hilt:hilt-navigation-compose",
+      "version": "1.3.0"
+    },
+    {
+      "alias": "datastore",
+      "module": "androidx.datastore:datastore-preferences",
+      "version": "1.2.1"
+    },
+    {
+      "alias": "compose-runtime",
+      "module": "androidx.compose.runtime:runtime",
+      "version": "1.10.2"
+    },
+    {
+      "alias": "compose-foundation",
+      "module": "androidx.compose.foundation:foundation",
+      "version": "1.10.2"
+    },
+    {
+      "alias": "compose-ui",
+      "module": "androidx.compose.ui:ui",
+      "version": "1.10.2"
+    },
+    {
+      "alias": "compose-ui-util",
+      "module": "androidx.compose.ui:ui-util",
+      "version": "1.10.2"
+    },
+    {
+      "alias": "compose-ui-tooling",
+      "module": "androidx.compose.ui:ui-tooling",
+      "version": "1.10.2"
+    },
+    {
+      "alias": "compose-animation",
+      "module": "androidx.compose.animation:animation-graphics",
+      "version": "1.10.2"
+    },
+    {
+      "alias": "compose-reorderable",
+      "module": "sh.calvin.reorderable:reorderable",
+      "version": "3.1.0"
+    },
+    {
+      "alias": "viewmodel",
+      "module": "androidx.lifecycle:lifecycle-viewmodel-ktx",
+      "version": "2.10.0"
+    },
+    {
+      "alias": "viewmodel-compose",
+      "module": "androidx.lifecycle:lifecycle-viewmodel-compose",
+      "version": "2.10.0"
+    },
+    {
+      "alias": "lifecycle-process",
+      "module": "androidx.lifecycle:lifecycle-process",
+      "version": "2.10.0"
+    },
+    {
+      "alias": "material3",
+      "module": "androidx.compose.material3:material3",
+      "version": "1.5.0-alpha18"
+    },
+    {
+      "alias": "androidx-adaptive",
+      "module": "androidx.compose.material3.adaptive:adaptive",
+      "version": "1.4.0-alpha03"
+    },
+    {
+      "alias": "androidx-adaptive-layout",
+      "module": "androidx.compose.material3.adaptive:adaptive-layout",
+      "version": "1.4.0-alpha03"
+    },
+    {
+      "alias": "androidx-adaptive-navigation",
+      "module": "androidx.compose.material3.adaptive:adaptive-navigation",
+      "version": "1.4.0-alpha03"
+    },
+    {
+      "alias": "compose-material-icons-core",
+      "module": "androidx.compose.material:material-icons-core",
+      "version": "1.10.2"
+    },
+    {
+      "alias": "compose-material-icons-extended",
+      "module": "androidx.compose.material:material-icons-extended",
+      "version": "1.10.2"
+    },
+    {
+      "alias": "materialKolor",
+      "module": "com.materialkolor:material-kolor",
+      "version": "4.1.1"
+    },
+    {
+      "alias": "appcompat",
+      "module": "androidx.appcompat:appcompat",
+      "version": "1.8.0"
+    },
+    {
+      "alias": "coil",
+      "module": "io.coil-kt.coil3:coil-compose",
+      "version": "3.3.0"
+    },
+    {
+      "alias": "coil-network-okhttp",
+      "module": "io.coil-kt.coil3:coil-network-okhttp",
+      "version": "3.3.0"
+    },
+    {
+      "alias": "ucrop",
+      "module": "com.github.yalantis:ucrop",
+      "version": "2.2.11"
+    },
+    {
+      "alias": "shimmer",
+      "module": "com.valentinilk.shimmer:compose-shimmer",
+      "version": "1.3.3"
+    },
+    {
+      "alias": "palette",
+      "module": "androidx.palette:palette-ktx",
+      "version": "1.0.0"
+    },
+    {
+      "alias": "media3",
+      "module": "androidx.media3:media3-exoplayer",
+      "version": "1.7.1"
+    },
+    {
+      "alias": "media3-okhttp",
+      "module": "androidx.media3:media3-datasource-okhttp",
+      "version": "1.7.1"
+    },
+    {
+      "alias": "media3-cronet",
+      "module": "androidx.media3:media3-datasource-cronet",
+      "version": "1.7.1"
+    },
+    {
+      "alias": "media3-session",
+      "module": "androidx.media3:media3-session",
+      "version": "1.7.1"
+    },
+    {
+      "alias": "media3-hls",
+      "module": "androidx.media3:media3-exoplayer-hls",
+      "version": "1.7.1"
+    },
+    {
+      "alias": "media3-ui",
+      "module": "androidx.media3:media3-ui",
+      "version": "1.7.1"
+    },
+    {
+      "alias": "mediarouter",
+      "module": "androidx.mediarouter:mediarouter",
+      "version": "1.8.1"
+    },
+    {
+      "alias": "cast-framework",
+      "module": "com.google.android.gms:play-services-cast-framework",
+      "version": "22.3.1"
+    },
+    {
+      "alias": "room-runtime",
+      "module": "androidx.room:room-runtime",
+      "version": "2.8.5"
+    },
+    {
+      "alias": "room-compiler",
+      "module": "androidx.room:room-compiler",
+      "version": "2.8.5"
+    },
+    {
+      "alias": "room-ktx",
+      "module": "androidx.room:room-ktx",
+      "version": "2.8.5"
+    },
+    {
+      "alias": "apache-lang3",
+      "module": "org.apache.commons:commons-lang3",
+      "version": "3.20.0"
+    },
+    {
+      "alias": "hilt",
+      "module": "com.google.dagger:hilt-android",
+      "version": "2.60.1"
+    },
+    {
+      "alias": "hilt-compiler",
+      "module": "com.google.dagger:hilt-android-compiler",
+      "version": "2.60.1"
+    },
+    {
+      "alias": "ktor-client-core",
+      "module": "io.ktor:ktor-client-core",
+      "version": "3.6.0"
+    },
+    {
+      "alias": "ktor-client-cio",
+      "module": "io.ktor:ktor-client-cio",
+      "version": "3.6.0"
+    },
+    {
+      "alias": "ktor-client-okhttp",
+      "module": "io.ktor:ktor-client-okhttp",
+      "version": "3.6.0"
+    },
+    {
+      "alias": "ktor-client-content-negotiation",
+      "module": "io.ktor:ktor-client-content-negotiation",
+      "version": "3.6.0"
+    },
+    {
+      "alias": "ktor-client-encoding",
+      "module": "io.ktor:ktor-client-encoding",
+      "version": "3.6.0"
+    },
+    {
+      "alias": "ktor-serialization-json",
+      "module": "io.ktor:ktor-serialization-kotlinx-json",
+      "version": "3.6.0"
+    },
+    {
+      "alias": "json",
+      "module": "org.json:json",
+      "version": "20251224"
+    },
+    {
+      "alias": "brotli",
+      "module": "org.brotli:dec",
+      "version": "0.1.2"
+    },
+    {
+      "alias": "desugaring",
+      "module": "com.android.tools:desugar_jdk_libs_nio",
+      "version": "2.1.5"
+    },
+    {
+      "alias": "junit",
+      "module": "junit:junit",
+      "version": "4.13.2"
+    },
+    {
+      "alias": "kotlinx-coroutines-test",
+      "module": "org.jetbrains.kotlinx:kotlinx-coroutines-test",
+      "version": "1.10.2"
+    },
+    {
+      "alias": "robolectric",
+      "module": "org.robolectric:robolectric",
+      "version": "4.14.1"
+    },
+    {
+      "alias": "timber",
+      "module": "com.jakewharton.timber:timber",
+      "version": "5.0.1"
+    },
+    {
+      "alias": "newpipeextractor",
+      "module": "com.github.TeamNewPipe:NewPipeExtractor",
+      "version": "v0.26.1"
+    },
+    {
+      "alias": "pipepipe-extractor",
+      "module": "com.github.maxrave-dev:PipePipeExtractor",
+      "version": "f8982ca9e7"
+    },
+    {
+      "alias": "kuromoji-ipadic",
+      "module": "com.atilika.kuromoji:kuromoji-ipadic",
+      "version": "0.9.0"
+    },
+    {
+      "alias": "tinypinyin",
+      "module": "com.github.promeG:tinypinyin",
+      "version": "2.0.3"
+    },
+    {
+      "alias": "protobuf-javalite",
+      "module": "com.google.protobuf:protobuf-javalite",
+      "version": "4.36.2"
+    },
+    {
+      "alias": "protobuf-kotlin-lite",
+      "module": "com.google.protobuf:protobuf-kotlin-lite",
+      "version": "4.36.2"
+    },
+    {
+      "alias": "smoothCorner",
+      "module": "com.github.racra:smooth-corner-rect-android-compose",
+      "version": "v1.0.0"
+    },
+    {
+      "alias": "lottie-compose",
+      "module": "com.airbnb.android:lottie-compose",
+      "version": "6.6.6"
+    },
+    {
+      "alias": "work-runtime-ktx",
+      "module": "androidx.work:work-runtime-ktx",
+      "version": "2.12.0"
+    },
+    {
+      "alias": "androidx-core-splashscreen",
+      "module": "androidx.core:core-splashscreen",
+      "version": "1.2.0"
+    },
+    {
+      "alias": "ffmpeg-kit-audio",
+      "module": "dev.ffmpegkit-maintained:ffmpeg-kit-audio",
+      "version": "8.1.7"
+    },
+    {
+      "alias": "youtubedl-android-library",
+      "module": "io.github.junkfood02.youtubedl-android:library",
+      "version": "0.18.1"
+    },
+    {
+      "alias": "youtubedl-android-ffmpeg",
+      "module": "io.github.junkfood02.youtubedl-android:ffmpeg",
+      "version": "0.18.1"
+    },
+    {
+      "alias": "youtubedl-android-aria2c",
+      "module": "io.github.junkfood02.youtubedl-android:aria2c",
+      "version": "0.18.1"
+    },
+    {
+      "alias": "play-services-location",
+      "module": "com.google.android.gms:play-services-location",
+      "version": "21.4.0"
+    }
+  ],
+  "checks": [
+    {
+      "check": "Android manifest XML",
+      "status": "PASS",
+      "detail": "Parsed successfully; 18 uses-permission declarations."
+    },
+    {
+      "check": "Permission absent: android.permission.REQUEST_INSTALL_PACKAGES",
+      "status": "PASS",
+      "detail": "Not declared in the main manifest."
+    },
+    {
+      "check": "Permission absent: android.permission.READ_CALL_LOG",
+      "status": "PASS",
+      "detail": "Not declared in the main manifest."
+    },
+    {
+      "check": "Permission absent: android.permission.READ_SMS",
+      "status": "PASS",
+      "detail": "Not declared in the main manifest."
+    },
+    {
+      "check": "Automatic backup",
+      "status": "PASS",
+      "detail": "android:allowBackup=false"
+    },
+    {
+      "check": "Cleartext traffic",
+      "status": "PASS",
+      "detail": "android:usesCleartextTraffic=default false"
+    },
+    {
+      "check": "Gradle version catalog",
+      "status": "PASS",
+      "detail": "Parsed 50 version keys and 75 library aliases; actual transitive resolution unavailable without Gradle."
+    },
+    {
+      "check": "FFmpegKit dependency maintenance",
+      "status": "PASS",
+      "detail": "Declared coordinate: dev.ffmpegkit-maintained:ffmpeg-kit-audio:8.1.7"
+    },
+    {
+      "check": "Protobuf version floor",
+      "status": "PASS",
+      "detail": "Declared protobuf-javalite: 4.36.2"
+    },
+    {
+      "check": "Discord WebView token extraction pattern",
+      "status": "PASS",
+      "detail": "No matching pattern found in scanned source/config files."
+    },
+    {
+      "check": "Legacy retired FFmpegKit coordinate",
+      "status": "PASS",
+      "detail": "No matching pattern found in scanned source/config files."
+    },
+    {
+      "check": "Shell execution APIs",
+      "status": "PASS",
+      "detail": "No matching pattern found in scanned source/config files."
+    },
+    {
+      "check": "Dynamic DEX/class loading APIs",
+      "status": "PASS",
+      "detail": "No matching pattern found in scanned source/config files."
+    },
+    {
+      "check": "Hardcoded Last.fm secret BuildConfig field",
+      "status": "PASS",
+      "detail": "LASTFM_SECRET is an empty placeholder; no embedded Last.fm secret found."
+    },
+    {
+      "check": "Smart Discovery queue wiring",
+      "status": "PASS",
+      "detail": "Search, deduplicate, playQueue and addToQueue paths present."
+    },
+    {
+      "check": "Potential embedded credential literals",
+      "status": "REVIEW",
+      "detail": "1 heuristic matches; a Google API-key-shaped value is present in PoTokenWebView. It may be a client key rather than a secret, but its API restrictions and quotas should be verified. Values are not emitted by this report."
+    }
+  ],
+  "limitations": [
+    "Gradle could not download its distribution in this environment because DNS resolution for services.gradle.org failed.",
+    "No APK was compiled or executed, and no runtime network capture was performed.",
+    "The dependency list is from the version catalog, not the resolved transitive dependency graph.",
+    "A complete CVE scan requires resolving all variants and checking the resolved graph against a current advisory database."
+  ]
+}
