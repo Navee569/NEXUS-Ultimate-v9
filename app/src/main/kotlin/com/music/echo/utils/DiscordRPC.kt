@@ -286,7 +286,7 @@ class DiscordRPC(
     val button2UrlSource = context.dataStore[DiscordActivityButton2UrlSourceKey] ?: "custom"
     val button2CustomUrl =
       context.dataStore[DiscordActivityButton2CustomUrlKey]
-        ?: "https://github.com/EchoMusicApp/Echo-Music"
+        ?: "https://github.com/Navee569/NEXUS-Ultimate-v9"
 
     return buildList {
         if (button1Enabled) {
