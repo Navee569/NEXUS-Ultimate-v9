@@ -2,7 +2,7 @@ name: NEXUS Android Debug Build
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "nexus-branding-cleanup"]
   workflow_dispatch:
 
 permissions:
@@ -49,9 +49,17 @@ jobs:
             "build-tools;37.0.0" \
             "ndk;28.2.13676358"
 
-      - name: Build APK
+      - name: Run unit tests
         run: |
           chmod +x gradlew
+          ./gradlew --no-daemon --stacktrace test
+
+      - name: Run Android lint
+        run: |
+          ./gradlew --no-daemon --stacktrace :app:lintUniversalFossDebug
+
+      - name: Build APK
+        run: |
           ./gradlew --no-daemon --stacktrace :app:assembleUniversalFossDebug
 
       - name: Upload APK
